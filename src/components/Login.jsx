@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
+import AccountBalance from "./AccountBalance"
 
 class LogIn extends Component {
   constructor () {
@@ -46,6 +47,7 @@ class LogIn extends Component {
           </div>
           <button>Log In</button>
         </form>
+        <AccountBalance accountBalance={this.props.accountBalance}/>
       </div>
     )
   }
