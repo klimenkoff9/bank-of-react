@@ -9,7 +9,7 @@ class Debits extends Component {
         debits:[],
         amount: 0,
         description: "",
-        balance: this.props.accountBalance
+        balance: 0
     }
   
     
@@ -22,10 +22,12 @@ class Debits extends Component {
   zipData = () =>{
     this.state.data.forEach(element => {
     const debit = {
-        description:element["description"],
-        date:element["date"],
-        amount:element["amount"]
+        description: element["description"],
+        date: element["date"],
+        amount: element["amount"]
       }
+      let newTotal = parseFloat(this.state.balance) + parseFloat(element["amount"])
+      this.setState({ balance: newTotal });
       this.state.debits.push(debit);
     });
   }
@@ -37,8 +39,9 @@ class Debits extends Component {
       description: this.state.description,
       date: new Date().toDateString()
     }
+    let newTotal = parseFloat(this.state.balance) + parseFloat(this.state.amount)
     const newDebits = [...this.state.debits,debit];
-    this.setState({debits:newDebits, balance:parseFloat(this.state.balance)+parseFloat(this.state.amount)});
+    this.setState({debits:newDebits, balance: newTotal });
   }
 
   enterAmount = (e) =>{
@@ -61,7 +64,6 @@ class Debits extends Component {
         />));
 
     return (
-
         <div>
             <h1>Debits</h1>
             <form>
@@ -71,8 +73,10 @@ class Debits extends Component {
             <input type="text"onChange={this.enterDescription}/><br/>
             <input type="submit" value="Submit" onClick={this.addDebit}/>
             </form>
-            {res}
+
             <AccountBalance accountBalance={this.state.balance}/>
+            
+            {res}
         </div>
     );
   }
