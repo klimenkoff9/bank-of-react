@@ -1,20 +1,22 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import AccountBalance from "./AccountBalance"
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import AccountBalance from "./AccountBalance";
 
 class UserProfile extends Component {
   render() {
     return (
-        <div>
-          <h1>User Profile</h1>
+      <div>
+        <h1>User Profile</h1>
 
-          <div>Username: {this.props.userName}</div>
-          <div>Member Since: {this.props.memberSince}</div>
-          <AccountBalance accountBalance={this.props.accountBalance}/>
+        <div>Username: {this.props.userName}</div>
+        <div>Member Since: {this.props.memberSince}</div>
 
-
-          <Link to="/home">Home</Link>
-        </div>
+        <ul>
+          <li>
+            <Link to="/home">Home</Link>
+          </li>
+        </ul>
+      </div>
     );
   }
 }
