@@ -28,7 +28,7 @@ class App extends Component {
       console.log(debitData.data);
       this.setState({ debitData: debitData.data });
       this.state.debitData.forEach((debit) => {
-        this.updateTotal(debit.amount);
+        this.mockDebits(debit.amount);
       });
     } catch (error) {
       console.error(error);
@@ -41,7 +41,7 @@ class App extends Component {
     this.setState({currentUser: newUser})
   }
   
-  mockDebits = (debits) => {
+  mockDebits1 = (debits) => {
     let newAmount = this.state.accountBalance
     newAmount -= debits;
     console.log(newAmount);
@@ -49,7 +49,7 @@ class App extends Component {
     this.setState({accountBalance: newAmount})
   }
 
-  updateTotal = (amount) => {
+  mockDebits = (amount) => {
     let newTotal = parseFloat(this.state.accountBalance) + parseFloat(amount);
     this.setState({ accountBalance: newTotal });
   };

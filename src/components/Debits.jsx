@@ -10,44 +10,38 @@ class Debits extends Component {
 
     this.state = {
       debitData: this.props.debitData,
-      debits: [],
-      amount: 0,
-      description: "",
-      balance: 0,
+      newAmount: "",
+      newDescription: ""
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // componentDidMount = async (props) => {
-  //   try {
-  //     const debitData = await this.props.debitData;
-  //     this.setState({ debitData: debitData });
-  //     console.log(debitData);
-  //     this.state.debitData.forEach((oneDebit) => {
-  //       const debit = {
-  //         description: oneDebit.description,
-  //         date: oneDebit.date,
-  //         amount: oneDebit.amount,
-  //       };
-  //       this.state.debits.push(debit);
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  componentDidMount = () => {
+    try {
+      setTimeout(() => {
+        const debitData = this.props.debitData;
+        this.setState({ debitData: debitData });
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  addDebit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    const debit = {
-      amount: this.state.amount,
-      description: this.state.description,
+    const debitFromForm = {
+      description: this.state.newDescription,
       date: new Date().toDateString(),
+      amount: this.state.newAmount,
     };
-    this.props.mockDebits(debit.amount);
-    // this.setState({
-    //   ...this.state.debits,
-    //   debits: debit,
-    // });
-    this.state.debits.push(debit);
+    this.setState({
+      ...this.state,
+      debitData: [...this.state.debitData, debitFromForm],
+    });
+    console.log(this.state.newDebit);
+    this.props.mockDebits(this.state.newAmount);
   };
 
   updateTotal = (amount) => {
@@ -58,13 +52,15 @@ class Debits extends Component {
     // console.log(this.state.balance);
   };
 
-  enterAmount = (e) => {
-    this.setState({ amount: e.target.value });
+  handleChange = (e) => {
+    e.preventDefault();
+    const value = e.target.value;
+    this.setState({
+      ...this.state,
+      [e.target.name]: value,
+    });
   };
 
-  enterDescription = (e) => {
-    this.setState({ description: e.target.value });
-  };
   render() {
     return (
       <div>
@@ -75,21 +71,32 @@ class Debits extends Component {
         </ul>
         <h1>Debits</h1>
         <form>
-          <label>Amount:</label>
-          <br />
-          <input type="text" onChange={this.enterAmount} />
-          <br />
-          <label>Description:</label>
-          <br />
-          <input type="text" onChange={this.enterDescription} />
-          <br />
-          <input type="submit" value="Submit" onClick={this.addDebit} />
+          <div>
+            <label htmlFor="Amount">Amount:</label>
+            <br />
+            <input
+              name="newAmount"
+              placeholder="Amount"
+              value={this.state.newAmount}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="Description">Description:</label>
+            <br />
+            <input
+              name="newDescription"
+              placeholder="Description"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+          </div>
+          <input type="submit" value="Submit" onClick={this.handleSubmit} />
         </form>
 
         <AccountBalance accountBalanceDebit={this.props.accountBalance} />
-        {console.log(this.state.debitData)}
+
         {this.state.debitData.map((debit, index) => {
-          console.log(debit.date);
           return (
             <Debit
               description={debit.description}
