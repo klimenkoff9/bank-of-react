@@ -14,9 +14,6 @@ class Debits extends Component {
       newDescription: ""
     };
 
-    // handleChange and handleSubmit are arrow functions, so they are implicitly bound to their calling component. binding is redundant.
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount = () => {
@@ -43,14 +40,6 @@ class Debits extends Component {
     });
     console.log(debitFromForm);
     this.props.mockDebits(this.state.newAmount);
-  };
-
-  updateTotal = (amount) => {
-    // console.log(amount);
-    let newTotal = parseFloat(this.state.balance) + parseFloat(amount);
-    // console.log(newTotal);
-    this.setState({ ...this.state, balance: newTotal });
-    // console.log(this.state.balance);
   };
 
   handleChange = (e) => {

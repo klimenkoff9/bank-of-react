@@ -13,9 +13,7 @@ class Credits extends Component {
       newAmount: "",
       newDescription: ""
     };
-
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    
   }
 
   componentDidMount = () => {
@@ -44,13 +42,6 @@ class Credits extends Component {
     this.props.mockCredits(this.state.newAmount);
   };
 
-  updateTotal = (amount) => {
-    // console.log(amount);
-    let newTotal = parseFloat(this.state.balance) + parseFloat(amount);
-    // console.log(newTotal);
-    this.setState({ ...this.state, balance: newTotal });
-    // console.log(this.state.balance);
-  };
 
   handleChange = (e) => {
     e.preventDefault();

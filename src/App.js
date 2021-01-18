@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import axios from "axios";
 
-import Home from './components/Home';
-import UserProfile from './components/UserProfile';
-import LogIn from "./components/Login.jsx"
-import Debits from "./components/DebitComponents/Debits.jsx"
-import Credits from './components/CreditComponents/Credits';
+import Home from './Components/Home';
+import UserProfile from './Components/UserProfile';
+import LogIn from "./Components/Login.jsx"
+import Debits from "./Components/DebitComponents/Debits.jsx"
+import Credits from './Components/CreditComponents/Credits';
 
 class App extends Component {
   constructor() {
@@ -53,22 +53,14 @@ class App extends Component {
     this.setState({currentUser: newUser})
   }
   
-  // mockDebits1 = (debits) => {
-  //   let newAmount = this.state.accountBalance
-  //   newAmount -= debits;
-  //   console.log(newAmount);
-  //   newAmount = Math.round(newAmount * 100) / 100
-  //   this.setState({accountBalance: newAmount})
-  // }
-
   mockDebits = (amount) => {
     let newTotal = parseFloat(this.state.accountBalance) - parseFloat(amount);
-    this.setState({ accountBalance: newTotal });
+    this.setState({ accountBalance: newTotal.toFixed(2) });
   };
 
   mockCredits = (amount) => {
     let newTotal = parseFloat(this.state.accountBalance) + parseFloat(amount);
-    this.setState({ accountBalance: newTotal });
+    this.setState({ accountBalance: newTotal.toFixed(2) });
   };
 
   render() {
