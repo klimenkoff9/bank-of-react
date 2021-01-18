@@ -36,19 +36,21 @@ class LogIn extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="userName">User Name</label>
-            <input type="text" name="userName" onChange={this.handleChange} value={this.state.user.userName} />
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" />
-          </div>
-          <button>Log In</button>
+            <div class="form-group">
+            <label for="username">User Name:</label>
+            <input type="username" class="form-control" id="username" aria-describedby="username" placeholder="Enter Name"
+            onChange={this.handleChange}/>
+            </div>
+            <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" aria-describedby="password" 
+            placeholder="Enter Password" onChange={this.handleChange}/>
+            </div>
+            <button>Log In</button>
         </form>
       </div>
     )
   }
 }
 
-export default LogIn
+export default LogIn;

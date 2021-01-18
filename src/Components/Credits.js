@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import AccountBalance from './AccountBalance';
-import Debit from './Debit';
+import Credit from './Credit';
 import { Link } from "react-router-dom";
 import { Table } from 'reactstrap';
-class Debits extends Component {
+class Credits extends Component {
 
   enterAmount = (e) =>{
     this.props.inputAmount(e.target.value);    
@@ -14,17 +14,17 @@ class Debits extends Component {
   }
 
   render() {
-    const res=this.props.debits.map((debit, index) => (
-        <Debit
-          description={debit.description}
-          date={debit.date}
-          amount={debit.amount}
+    const res=this.props.credits.map((credit, index) => (
+        <Credit
+          description={credit.description}
+          date={credit.date}
+          amount={credit.amount}
           key={index}
         />));
 
     return (
         <div>
-            <h1>Debits</h1>
+            <h1>Credits</h1>
             <Table dark>
             <thead>
             <tr>
@@ -48,7 +48,7 @@ class Debits extends Component {
             <input type="description" class="form-control" id="descriptiont" aria-describedby="description" 
             placeholder="Enter Description" onChange={this.enterDescription}/>
             </div>
-            <button type="submit" class="btn btn-primary" onClick={this.props.addDebit}>Submit</button>
+            <button type="submit" class="btn btn-primary" onClick={this.props.addCredit}>Submit</button>
             </form><br/>
             <AccountBalance accountBalance={this.props.accountBalance}/>
             <Link to="/">Home</Link>
@@ -57,4 +57,4 @@ class Debits extends Component {
   }
 }
 
-export default Debits;
+export default Credits;

@@ -3,11 +3,11 @@ import React, {Component} from 'react';
 class Debit extends Component {
   render() {
     return (
-        <div>
-          Amount: {this.props.amount}
-          Date: {this.props.date}
-          description: {this.props.description}
-        </div>
+          <tr>
+          <td>{this.props.amount}</td>
+          <td>{this.props.date}</td>
+          <td>{this.props.description}</td>
+          </tr>
     );
   }
 }
