@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import AccountBalance from "./AccountBalance";
+import AccountBalance from "../AccountBalance";
 import Debit from "./Debit";
 import { Link } from "react-router-dom";
 
@@ -14,8 +14,9 @@ class Debits extends Component {
       newDescription: ""
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // handleChange and handleSubmit are arrow functions, so they are implicitly bound to their calling component. binding is redundant.
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount = () => {
@@ -40,7 +41,7 @@ class Debits extends Component {
       ...this.state,
       debitData: [...this.state.debitData, debitFromForm],
     });
-    console.log(this.state.newDebit);
+    console.log(debitFromForm);
     this.props.mockDebits(this.state.newAmount);
   };
 
@@ -67,6 +68,9 @@ class Debits extends Component {
         <ul>
           <li>
             <Link to="/home">Home</Link>
+          </li>
+          <li>
+            <Link to="/userCredits">Credits</Link>
           </li>
         </ul>
         <h1>Debits</h1>

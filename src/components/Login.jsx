@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import AccountBalance from "./AccountBalance"
+// import AccountBalance from "./AccountBalance"
 
 class LogIn extends Component {
   constructor () {
@@ -47,7 +47,8 @@ class LogIn extends Component {
           </div>
           <button>Log In</button>
         </form>
-        <AccountBalance accountBalance={this.props.accountBalance}/>
+        {/* <AccountBalance accountBalance={this.props.accountBalance}/> 
+        this was displaying the balance on the login screen but login has no state  for account balance*/}
       </div>
     )
   }
