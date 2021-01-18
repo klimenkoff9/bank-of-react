@@ -7,7 +7,7 @@ class Home extends Component {
     return (
       <div>
         <img
-          src="https://letstalkpayments.com/wp-content/uploads/2016/04/Bank.png"
+          src="https://medici-prod.s3-us-west-2.amazonaws.com/uploads/404page8.jpg"
           alt="bank"
         />
         <h1>Bank of React</h1>
